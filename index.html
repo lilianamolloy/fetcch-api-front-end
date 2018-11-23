@@ -12,10 +12,39 @@
     <nav class="navigation">
         <a href="/">Home</a>
     </nav>
-    <main>
+    <form id="bookForm">
+        <p>
+            <label for="title">Title</label>
+            <input type="text" name="title">
+        </p>
+        <p>
+            <label for="isbn">ISBN</label>
+            <input type="text" name="isbn">
+        </p>
+        <p>
+            <label for="description">Description</label>
+            <textarea name="description" cols="30" rows="10" style="resize:none;"></textarea>
+        </p>
+        <p>
+            <label for="price">Price in cents</label>
+            <input type="text" name="price">
+        </p>
+        <p>
+            <label for="author">Author</label>
+            <input type="text" name="author">
+        </p>
+        <p>
+            <input type="submit" value="Create Book">
+        </p>
+    </form>
         <ul class="books">
             <p class="loader">Loading Books...</p>
         </ul>   
     </main>
+    <aside>
+        <h2>Top Authors</h2>
+        <ol class="authors">
+        </ol>
+    </aside>
 </body>
 </html>

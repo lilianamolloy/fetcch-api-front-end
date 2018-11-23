@@ -22,14 +22,15 @@ body {
 
 .book {
     background: #ccc;
-    max-width: 200px;
     min-width: 150px;
+    width: 200px;
     max-height: 300px;
     padding: 1em;
     font-family: helvetica;
     border-radius: 7px;
     color: #202020;
     box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    margin: 0.2em;
 }
 
 ul {
@@ -38,5 +39,14 @@ ul {
     width: 100vw;
     flex-flow: row wrap;
     justify-content: space-around;
+    padding: 0;
 }
 
+form {
+    width: 400px;
+    height: 400px;
+    background: pink;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 10px;
+}
