@@ -52,10 +52,10 @@ function addBooks(book) {
 }
 
 function createBook(book) {
-    const loader = document.querySelector('.loader')
-    loader.style.display = 'none'
+
     const li = document.createElement('li')
     li.classList.add('book')
+    li.dataset.id = book.id
     const title = document.createElement('h4')
     title.innerText = book.title
 
@@ -65,12 +65,47 @@ function createBook(book) {
     const priceArea = document.createElement('p')
     priceArea.innerText = `$ ${(book.price/100).toFixed(2)}`
 
+    const deleteBtn = document.createElement('button')
+    deleteBtn.classList.add('btn', 'btn-delete')
+    deleteBtn.innerText = "Delete Button"
+
+    deleteBtn.addEventListener('click', function(e) {
+        deleteBookFetch(e).then(id => {return removeBook(id)})
+    })
+
     li.appendChild(title)
     li.appendChild(priceArea)
+    li.appendChild(deleteBtn)
     priceArea.prepend(price)
 
     return li 
 }
+
+// delete the book
+function deleteBookFetch(e) {
+    const id = e.target.parentElement.dataset.id
+    // delete book from db 
+    const url = `http://localhost:3000/books/${id}`
+   
+    return fetch(url, {
+        method: 'DELETE'
+    })
+    .then(function() {
+        return id
+        }
+    )
+}
+
+function removeBook(id) {
+    Array.from(ul.childNodes).forEach(child => {
+        if(child.nodeName == 'LI') {
+            if(child.dataset.id === id) {
+                ul.removeChild(child)
+            }
+        }
+    })
+}
+
 
 //get the form 
 //add event listener on submit
@@ -107,7 +142,7 @@ function postBook(e) {
     }
     e.target.reset()
 
-    return fetch(url, options).then( res => {return res.json()}) // promise object
+    return fetch(url, options).then( res => res.json()) // promise object
 }
 
 
